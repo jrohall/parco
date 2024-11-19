@@ -7,9 +7,10 @@ interface RangeSliderProps {
   width: number;
   height?: number;
   isActive: boolean;
+  showBorder?: boolean;
 }
 
-const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width * 0.8, isActive = true }) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width * 0.7, isActive = true, showBorder }) => {
   const red = "#FD5C70";
   const yellow = "#F8D07B";
   const green = "#60BE64";
@@ -126,7 +127,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
   }, [value, isActive]);
 
   return (
-    <Box component="section" sx={{ border: '1px dashed grey', height: height, width: width }}>
+    <Box component="section" sx={{ height: height, width: width, border: showBorder ? '1px dashed grey' : 'none' }}>
       <defs>
         <filter id={`circleShadow-${value}`} x="-50%" y="-50%" width="200%" height="200%">
           <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="rgba(0, 0, 0, 0.3)" />
