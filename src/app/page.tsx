@@ -1,101 +1,64 @@
-import Image from "next/image";
+import { Container, Box, Typography, makeStyles, Button } from '@mui/material';
+import Grid from '@mui/material/Grid2';
+import RangeSlider from './components/rangerSlider/rangeSlider';
+import EastIcon from '@mui/icons-material/East';
+
+
+const medGray = '#75787B';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        height: '43vh',
+        width: '37vw',
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        background: 'white',
+        borderRadius: '10px',
+        borderWidth: '1px',
+        borderColor: '#D2D6DA',
+      }}
+    >
+      <Grid container spacing={0} sx={{ width: '90%', border: '1px solid red', marginTop: '3vh', marginRight: '5px', marginLeft: '5px' }}>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <Grid size={12} style={{ border: '1px solid black'}}>
+          <p style={{ color: '#75787B', fontSize: '18px', fontWeight: 'bold', border: '1px dashed blue' }}>Recommended TSP Strategy</p>
+        </Grid>
+
+        <Grid size={12} container spacing={2} justifyContent="center" alignItems="center" style={{ border: '1px solid blue'}}>
+          <Grid>
+            <RangeSlider value={44} width={125} isActive={true}/>
+          </Grid>
+          <Grid>
+            <EastIcon sx={{ fontSize: '50px', color: medGray, backgroundColor: 'red' }}/>
+          </Grid>
+          <Grid>
+            <RangeSlider value={94} width={125} isActive={false}/>
+          </Grid>
+        </Grid>
+
+        <Grid size={12} container spacing={1}>
+
+          <Grid size={12}>
+            <p style={{ background: 'red'}}>With just a few actions you could be setting yourself up for your dream retirement</p>
+          </Grid>
+
+          <Grid size={12}>
+            <h1 style={{ background: 'red'}}>The closer to retirement you get, the more money it's going to cost to reach these same goals. Don't wait! Click below.</h1>
+          </Grid>
+
+          <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Button variant="contained" sx={{ width: '100%', height: '50px'}}>View Strategy</Button>
+          </Grid>
+        
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
