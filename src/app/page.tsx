@@ -45,7 +45,7 @@ export function Home() {
       <Grid container spacing={0} sx={{ width: '90%', marginTop: '3vh', marginRight: '8px', marginLeft: '8px' }}>
 
         <Grid size={12}>
-          <p style={{ color: '#75787B', fontSize: '18px', fontWeight: 'bold' }}>Recommended TSP Strategy</p>
+          <Typography style={{ color: '#75787B', fontSize: '18px', fontWeight: 'bold' }}>Recommended TSP Strategy</Typography>
         </Grid>
 
         <Grid size={12} container spacing={2} justifyContent="center" alignItems="center">
@@ -63,16 +63,16 @@ export function Home() {
         <Grid size={12} container spacing={1.5}>
 
           <Grid size={12}>
-            <p style={{ color: darkGray}}>With just a few actions you could be setting yourself up for your dream retirement.</p>
+            <Typography style={{ color: darkGray}}>With just a few actions you could be setting yourself up for your dream retirement.</Typography>
           </Grid>
 
           <Grid size={12}>
-            <h1 style={{ color: darkGray }}>The closer to retirement you get, the more money it's going to cost to reach these same goals. Don't wait! Click below.</h1>
+            <Typography style={{ color: darkGray }}>The closer to retirement you get, the more money it's going to cost to reach these same goals. Don't wait! Click below.</Typography>
           </Grid>
 
           <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Button variant="contained" sx={{ width: '100%', height: '50px', backgroundColor: secondaryDark, fontWeight: 'bold', fontSize: '18px', alignItems: 'center'}} onClick={handleBtnClick}>View Strategy</Button>
-            <ModalPopup openModal={openModal} closeCallback={handleModalClose} />
+            <ModalPopup openModal={true} closeCallback={handleModalClose} /> 
           </Grid>
         
         </Grid>

@@ -128,11 +128,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
 
   return (
     <Box component="section" sx={{ height: height, width: width, border: showBorder ? '1px dashed grey' : 'none' }}>
-      <defs>
-        <filter id={`circleShadow-${value}`} x="-50%" y="-50%" width="200%" height="200%">
-          <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="rgba(0, 0, 0, 0.3)" />
-        </filter>
-      </defs>
       <svg height="100%" width="100%">
         <path id={`arc1-${value}`} fill="none" strokeLinecap="round" />
         <path id={`arc2-${value}`} fill="none" strokeLinecap="round" />
