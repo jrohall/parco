@@ -4,7 +4,8 @@ import Grid from '@mui/material/Grid2';
 import RangeSlider from './components/rangerSlider/rangeSlider';
 import EastIcon from '@mui/icons-material/East';
 import { useState } from 'react';
-import ModalPopup from './components/popup/set-popup';
+import SetPopup from './components/popup/set-popup';
+import ResPopup from './components/popup/res-popup';
 
 const lightGray = '#D2D6DA'
 const medGray = '#75787B';
@@ -14,15 +15,29 @@ const secondaryDark = '#344767';
 
 
 export function Home() {
-  const [openModal, setOpenModal] = useState(false);
-    const handleBtnClick = () => {
-        setOpenModal(true);
+  const [recommendedTSPContribution, setRecommendedTSPContribution] = useState(0);
+  const [retirementIncome, setRetirementIncome] = useState(60);
+  const [retirementYears, setRetirementYears] = useState(34);
+
+  const [isSetPopupOpen, setOpenSetPopup] = useState(false);
+  const [isResPopupOpen, setOpenResPopup] = useState(false);
+  const [shouldOpenResPopup, setShouldOpenResPopup] = useState(false);
+    const handleOpenSetPopup = () => {
+      setOpenSetPopup(true);
     }
 
-    const handleModalClose = () => {
-        setOpenModal(false);
+    const handleSetPopupClose = () => {
+      setOpenSetPopup(false);
     }
 
+    const handleResPopupClose = () => {
+      setOpenResPopup(false);
+    }
+
+    const handleCloseSetOpenRes = () => {
+      setOpenSetPopup(false);
+      setOpenResPopup(true);
+    }
 
   return (
     <Box
@@ -30,8 +45,9 @@ export function Home() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        height: '43vh',
-        width: '36vw',
+        height: { xs: '45vh', sm: '43vh', md: '43vh' },
+        width: { xs: '90vw', sm: '80vw', md: '36vw' },
+        maxWidth: '600px',
         position: 'absolute',
         top: '50%',
         left: '50%',
@@ -50,13 +66,13 @@ export function Home() {
 
         <Grid size={12} container spacing={2} justifyContent="center" alignItems="center">
           <Grid>
-            <RangeSlider value={44} width={125} isActive={true}/>
+            <RangeSlider id={"0"} value={44} width={125} isActive={true}/>
           </Grid>
           <Grid>
             <EastIcon sx={{ fontSize: '40px', color: lightGray }}/>
           </Grid>
           <Grid>
-            <RangeSlider value={94} width={125} isActive={false}/>
+            <RangeSlider id={"1"} value={94} width={125} isActive={false}/>
           </Grid>
         </Grid>
 
@@ -71,8 +87,9 @@ export function Home() {
           </Grid>
 
           <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Button variant="contained" sx={{ width: '100%', height: '50px', backgroundColor: secondaryDark, fontWeight: 'bold', fontSize: '18px', alignItems: 'center'}} onClick={handleBtnClick}>View Strategy</Button>
-            <ModalPopup openModal={true} closeCallback={handleModalClose} /> 
+            <Button variant="contained" sx={{ width: '100%', height: '50px', backgroundColor: secondaryDark, fontWeight: 'bold', fontSize: '18px', alignItems: 'center', justifyContent: 'center'}} onClick={handleOpenSetPopup}>View Strategy</Button>
+            <SetPopup openModal={isSetPopupOpen} closeCallback={handleSetPopupClose} openRes={handleCloseSetOpenRes} setRecommendedTSPContribution={setRecommendedTSPContribution} setRetirementIncome={setRetirementIncome} setRetirementYears={setRetirementYears}/> 
+            <ResPopup openModal={isResPopupOpen} closeCallback={handleResPopupClose} setRecommendedTSPContribution={recommendedTSPContribution} setRetirementIncome={retirementIncome} setRetirementYears={retirementYears}/>
           </Grid>
         
         </Grid>

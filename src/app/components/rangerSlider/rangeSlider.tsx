@@ -1,8 +1,9 @@
 "use client";
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 
 interface RangeSliderProps {
+  id: string;
   value: number;
   width: number;
   height?: number;
@@ -10,7 +11,7 @@ interface RangeSliderProps {
   showBorder?: boolean;
 }
 
-const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width * 0.7, isActive = true, showBorder }) => {
+const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = width * 0.7, isActive = true, showBorder }) => {
   const red = "#FD5C70";
   const yellow = "#F8D07B";
   const green = "#60BE64";
@@ -34,7 +35,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
   const margin = 10;
   const fontSize = width / 3;
 
-  const [scoreColor, setScoreColor] = useState<string>(''); // declare scoreColor and setScoreColor
+  const [scoreColor, setScoreColor] = useState<string>('');
 
   const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
     const angleInRadians = (angleInDegrees - 180) * Math.PI / 180.0;
@@ -52,8 +53,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
   };
 
   const moveCircle = (x: number, y: number, radius: number, endAngle: number, color: string) => {
-    const circleElement = document.getElementById(`circle-${value}`);
-    const textStatusElement = document.getElementById(`status-${value}`);
+    const circleElement = document.getElementById(`circle-${id}`);
+    const textStatusElement = document.getElementById(`status-${id}`);
+
 
     if (circleElement && textStatusElement) {
       const start = polarToCartesian(x, y, radius, endAngle);
@@ -103,9 +105,10 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
     const range3E = maxFiltered - margin;
 	
 
-    const arc1 = document.getElementById(`arc1-${value}`) as unknown as SVGPathElement;
-    const arc2 = document.getElementById(`arc2-${value}`) as unknown as SVGPathElement;
-    const arc3 = document.getElementById(`arc3-${value}`) as unknown as SVGPathElement;
+    const arc1 = document.getElementById(`arc1-${id}`) as unknown as SVGPathElement;
+    const arc2 = document.getElementById(`arc2-${id}`) as unknown as SVGPathElement;
+    const arc3 = document.getElementById(`arc3-${id}`) as unknown as SVGPathElement;
+
 
     alterArc(arc1, isActive ? red : inactiveRed, range1S, range1E);
     alterArc(arc2, isActive ? yellow : inactiveYellow, range2S, range2E);
@@ -126,19 +129,52 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ value, width, height = width 
     updateArcs(value);
   }, [value, isActive]);
 
+  useEffect(() => {
+    if (isActive) {
+      const elements = document.querySelectorAll(`path[id^="arc-${id}"]`);
+      elements.forEach((element) => {
+        element.animate(
+          [
+            { stroke: inactiveRed },
+            { stroke: red },
+          ],
+          {
+            duration: 1500,
+            fill: "forwards",
+          }
+        );
+      });
+    } else {
+      const elements = document.querySelectorAll(`path[id^="arc-${id}"]`);
+      elements.forEach((element) => {
+        element.animate(
+          [
+            { stroke: red },
+            { stroke: inactiveRed },
+          ],
+          {
+            duration: 1500,
+            fill: "forwards",
+          }
+        );
+      });
+    }
+  }, [isActive]);
+
   return (
     <Box component="section" sx={{ height: height, width: width, border: showBorder ? '1px dashed grey' : 'none' }}>
       <svg height="100%" width="100%">
-        <path id={`arc1-${value}`} fill="none" strokeLinecap="round" />
-        <path id={`arc2-${value}`} fill="none" strokeLinecap="round" />
-        <path id={`arc3-${value}`} fill="none" strokeLinecap="round" />
-        <circle id={`circle-${value}`} cx="150" cy="150" stroke="orange" fill="white" filter={`url(#circleShadow-${value})`}  />
-        <text id={`status-${value}`} x="50%" y="60%" fill={isActive ? textColor : inactiveTextColor} dominantBaseline="middle" textAnchor="middle" fontSize={fontSize} fontWeight="bold"></text>
+        <path id={`arc1-${id}`} fill="none" strokeLinecap="round" />
+        <path id={`arc2-${id}`} fill="none" strokeLinecap="round" />
+        <path id={`arc3-${id}`} fill="none" strokeLinecap="round" />
+        <circle id={`circle-${id}`} cx="150" cy="150" stroke="orange" fill="white" filter={`url(#circleShadow-${id})`} />
+        <text id={`status-${id}`} x="50%" y="60%" fill={isActive ? textColor : inactiveTextColor} dominantBaseline="middle" textAnchor="middle" fontSize={fontSize} fontWeight="bold"></text>
 
       </svg>
     </Box>
 
   );
 };
+
 export default RangeSlider;
 
