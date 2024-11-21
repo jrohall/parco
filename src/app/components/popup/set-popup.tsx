@@ -9,6 +9,9 @@ import HelpIcon from '@mui/icons-material/Help';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import { Theme } from '@mui/material/styles';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 
 const style = (theme: Theme) => ({
   position: 'absolute',
@@ -61,28 +64,44 @@ const sliderStyle = {
   color: parcoDark,
   '& .MuiSlider-track': {
     border: 'none',
-    background: 'linear-gradient(90deg, #918BE4, #D8ECF8)', // Track gradient
+    background: 'linear-gradient(90deg, #918BE4, #D8ECF8)',
   },
   '& .MuiSlider-rail': {
     opacity: 0.5,
     background: 'linear-gradient(90deg, #918BE4, #D8ECF8)',
   },
   '& .MuiSlider-thumb': {
-    height: 30,
-    width: 30,
+    height: 35,
+    width: 35,
     backgroundColor: parcoDark,
     boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     '&:focus, &:hover, &.Mui-active': {
       boxShadow: '0 0 10px rgba(0, 0, 0, 0.4)',
     },
+    '&::before': {
+      boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
+      content: '"< >"',
+      fontSize: '18px',
+      color: 'white',
+      position: 'absolute',
+      left: '63%',
+      top: '60%',
+      transform: 'translate(-50%, -50%)',
+    },
   },
   '& .MuiSlider-valueLabel': {
-    backgroundColor: parcoDark, // Background color for the balloon
+    backgroundColor: parcoDark, 
     borderRadius: '50%',
-    marginBottom: '50px', // Makes the label circular
-    padding: '0.5rem', // Space inside the label
-    transform: 'translateY(-50%)', // Position adjustment
-    top: '-40px', // Move the label higher (adjust as needed)
+    marginBottom: '50px', 
+    padding: '0.5rem', 
+    width: '30px',
+    height: '30px',
+    display: 'flex',
+    transform: 'translateY(-50%)', 
+    top: '-30px',
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -92,15 +111,15 @@ const sliderStyle = {
       width: '0',
       height: '0',
       borderStyle: 'solid',
-      borderWidth: '12px 12px 0px 12px', // Tail dimensions
-      borderColor: '#344767 white white white', // Match balloon color
+      borderWidth: '12px 12px 0px 12px', 
+      borderColor: '#344767 white white white', 
     },
   },
   '& .MuiSlider-mark': {
     backgroundColor: parcoDark,
     height: 24,
     width: 8,
-    BorderAllRounded: '100%',
+    borderRadius: 12,
   },
 
 };
@@ -138,8 +157,6 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
   };
 
   React.useEffect(() => {
-    console.log('setOpen', openModal);
-    //console.log('setOpenRes', openRes);
     setOpen(openModal);
   }, [openModal]);
 

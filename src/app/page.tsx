@@ -21,7 +21,7 @@ export function Home() {
 
   const [isSetPopupOpen, setOpenSetPopup] = useState(false);
   const [isResPopupOpen, setOpenResPopup] = useState(false);
-  const [shouldOpenResPopup, setShouldOpenResPopup] = useState(false);
+  
     const handleOpenSetPopup = () => {
       setOpenSetPopup(true);
     }
@@ -89,7 +89,7 @@ export function Home() {
           <Grid size={12} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Button variant="contained" sx={{ width: '100%', height: '50px', backgroundColor: secondaryDark, fontWeight: 'bold', fontSize: '18px', alignItems: 'center', justifyContent: 'center'}} onClick={handleOpenSetPopup}>View Strategy</Button>
             <SetPopup openModal={isSetPopupOpen} closeCallback={handleSetPopupClose} openRes={handleCloseSetOpenRes} setRecommendedTSPContribution={setRecommendedTSPContribution} setRetirementIncome={setRetirementIncome} setRetirementYears={setRetirementYears}/> 
-            <ResPopup openModal={isResPopupOpen} closeCallback={handleResPopupClose} setRecommendedTSPContribution={recommendedTSPContribution} setRetirementIncome={retirementIncome} setRetirementYears={retirementYears}/>
+            <ResPopup openModal={isResPopupOpen} closeCallback={handleResPopupClose} recommendedTSPContribution={recommendedTSPContribution} retirementIncome={retirementIncome} retirementYears={retirementYears}/>
           </Grid>
         
         </Grid>

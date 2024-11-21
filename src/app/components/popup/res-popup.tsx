@@ -10,25 +10,6 @@ import RangeSlider from '../rangerSlider/rangeSlider';
 import EastIcon from '@mui/icons-material/East';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '100vw',
-  maxWidth: '600px',
-  height: '100vh',
-  maxHeight: '800px',
-  boxShadow: 24,
-  p: 4,
-  background: 'white',
-  borderRadius: '10px',
-  borderWidth: '1px',
-  borderColor: '#D2D6DA',
-  transition: 'none',
-  overflow: 'hidden',
-};
-
 const lightGray = '#D2D6DA'
 const medGray = '#A3A7AA';
 const medDarkGray = '#75787B';
@@ -64,14 +45,6 @@ export default function ResPopup({openModal, closeCallback, recommendedTSPContri
       }, 700);
     }
   },[openModal]);
-
-  const handleChangeYears = (event: Event, newValue: number | number[]) => {
-    setUserYearsToRetirement(newValue as number);
-  };
-
-  const handleChangeIncome = (event: Event, newValue: number | number[]) => {
-    setUserRetirementIncome(newValue as number);
-  };
 
   return (
     <div>
@@ -130,7 +103,7 @@ export default function ResPopup({openModal, closeCallback, recommendedTSPContri
                 </Grid>
 
                 <Grid size={12}>
-                    <Typography style={{ color: darkGray }}>Making this change from $150 to ${recommendedTSPContribution} will boost your Retirement Readiness Score from a 44 to a 94. Putting you on track to retire making ${retirementIncome},000 a year by {new Date().getFullYear() + retirementYears}.</Typography>
+                    <Typography style={{ color: darkGray }}>Making this change from $150 to ${recommendedTSPContribution} will boost your Retirement Readiness Score from a 44 to a 94. Putting you on track to retire making ${retirementIncome},000 annually by {new Date().getFullYear() + retirementYears}.</Typography>
                 </Grid>
 
                 <Grid size={12} container spacing={1.5}>
