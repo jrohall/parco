@@ -17,23 +17,20 @@ const darkGray = '#495057';
 const darkerGray = '#24282b';
 const secondaryDark = '#344767';
 const mainHeader = 'black'
-const xIconSize = '18px';
 const parcoDark = '#344767'
 
 export default function ResPopup({openModal, closeCallback, recommendedTSPContribution, retirementIncome, retirementYears}:any) {
-  const [userYearsToRetirement, setUserYearsToRetirement] = React.useState(34);
-  const [userRetirementIncome, setUserRetirementIncome] = React.useState(60);
   const [open, setOpen] = React.useState(openModal);
   const [isActive1, setIsActive1] = React.useState(true);
   const [isActive2, setIsActive2] = React.useState(lightGray);
   const [isActive3, setIsActive3] = React.useState(false);
 
-  const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     closeCallback();
   }
 
+  // for the fading effect, decides which part gets faded or activated
   React.useEffect(()=>{
     console.log('resOpen', openModal);
     setOpen(openModal);

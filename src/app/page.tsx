@@ -1,5 +1,5 @@
 "use client"
-import { Container, Box, Typography, makeStyles, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import RangeSlider from './components/rangerSlider/rangeSlider';
 import EastIcon from '@mui/icons-material/East';

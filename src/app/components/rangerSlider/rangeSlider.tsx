@@ -23,7 +23,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
   const inactiveTextColor = "#D2D6DA";
 
   const arc = 180;
-  const arcWidth = (width / 2) - (0.1 * width);
+  const arcWidth = (width / 2) - (0.1 * width); // sets position specifically of the endpoints of the arc
   const arcCenter = width / 2;
   const arcHeight = (height / 2) + (0.2 * height);
   const strokeWidth = width / 15;
@@ -37,6 +37,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
 
   const [scoreColor, setScoreColor] = useState<string>('');
 
+  // generates the path of the arc, based on the start and end angles
   const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
     const angleInRadians = (angleInDegrees - 180) * Math.PI / 180.0;
     return {
@@ -81,7 +82,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
 
   const filterRange = (r: number) => {
     r = r - min;
-    return Math.round((r / range) * 180);
+    return Math.round((r / range) * arc);
   };
 
   const alterArc = (arc: SVGPathElement | null, color: string, start: number, end: number) => {
@@ -93,6 +94,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
   };
 
   const updateArcs = (value: number) => {
+    // update these values to change the length of each color arc
     const range1E = filterRange(55);
     const range2E = filterRange(80);
     const maxFiltered = filterRange(max);
@@ -161,6 +163,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
     }
   }, [isActive]);
 
+  // the id makes sure that a unique SVG element is rendered, otherwise it will return a blank
   return (
     <Box component="section" sx={{ height: height, width: width, border: showBorder ? '1px dashed grey' : 'none' }}>
       <svg height="100%" width="100%">

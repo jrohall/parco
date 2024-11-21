@@ -9,8 +9,6 @@ import HelpIcon from '@mui/icons-material/Help';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 import { Theme } from '@mui/material/styles';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
 const style = (theme: Theme) => ({
@@ -101,7 +99,7 @@ const sliderStyle = {
     height: '30px',
     display: 'flex',
     transform: 'translateY(-50%)', 
-    top: '-30px',
+    top: '-25px',
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -124,12 +122,6 @@ const sliderStyle = {
 
 };
 
-
-function valuetext(value: number) {
-  return `$${value}K`;
-}
-
-
 function calculateSavingsForRetirement(yearsToRetirement: number, retirementIncome: number) {
   return Math.floor(((1000 * retirementIncome) * 0.25) / yearsToRetirement);
 }
@@ -138,8 +130,8 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
   const [userYearsToRetirement, setUserYearsToRetirement] = React.useState(34);
   const [userRetirementIncome, setUserRetirementIncome] = React.useState(60);
   const [open, setOpen] = React.useState(openModal);
+  const recommendedTSPContribution = calculateSavingsForRetirement(userYearsToRetirement, userRetirementIncome);
 
-  const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     closeCallback();
@@ -167,8 +159,6 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
   const handleChangeIncome = (event: Event, newValue: number | number[]) => {
     setUserRetirementIncome(newValue as number);
   };
-
-  const recommendedTSPContribution = calculateSavingsForRetirement(userYearsToRetirement, userRetirementIncome);
 
   return (
     <div>
@@ -220,7 +210,6 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
                   <Slider
                     aria-label="Always visible"
                     value={userYearsToRetirement}
-                    getAriaValueText={valuetext}
                     min={1}
                     max={50}
                     step={1}
@@ -241,13 +230,13 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
                   <Slider
                     aria-label="Always visible"
                     value={userRetirementIncome}
-                    getAriaValueText={valuetext}
                     min={20}
                     max={100}
                     step={5}
                     marks={retirementIncome}
                     valueLabelDisplay="on"
                     onChange={handleChangeIncome}
+                    valueLabelFormat={(value) => `${value}K`}
                     sx={sliderStyle}
                   />
                 </Grid>
