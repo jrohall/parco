@@ -39,22 +39,18 @@ const parcoDark = '#344767';
 const retirementYears = [
   {
     value: 24,
-    label: '24',
   },
   {
     value: 34,
-    label: '34',
   },
 ];
 
 const retirementIncome = [
   {
     value: 60,
-    label: '60K',
   },
   {
     value: 100,
-    label: '100K',
   },
 ];
 
@@ -95,15 +91,16 @@ const sliderStyle = {
     borderRadius: '50%',
     marginBottom: '50px', 
     padding: '0.5rem', 
-    width: '30px',
-    height: '30px',
+    width: '35px',
+    height: '35px',
     display: 'flex',
     transform: 'translateY(-50%)', 
-    top: '-25px',
+    fontWeight: 'bold',
+    top: '-15px',
     '&::before': {
       content: '""',
       position: 'absolute',
-      bottom: '-6px',
+      bottom: '-7px',
       left: '50%',
       transform: 'translateX(-50%)',
       width: '0',
@@ -111,6 +108,7 @@ const sliderStyle = {
       borderStyle: 'solid',
       borderWidth: '12px 12px 0px 12px', 
       borderColor: '#344767 white white white', 
+      fontWeight: 'bold',
     },
   },
   '& .MuiSlider-mark': {
@@ -220,7 +218,7 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
                   />
                 </Grid>
               </Grid>
-              <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Grid container size={12} sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
                 <Grid size={12} sx={{ mb: 7, display: 'flex', justifyContent: 'center'}}>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }} color={darkerGray}>
                     Desired Annual Income In Retirement
