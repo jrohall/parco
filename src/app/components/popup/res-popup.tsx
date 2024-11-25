@@ -40,6 +40,11 @@ export default function ResPopup({openModal, closeCallback, recommendedTSPContri
         setIsActive2(medGray);
         setIsActive3(true);
       }, 700);
+    } 
+    else {
+      setIsActive1(true);
+      setIsActive2(lightGray);
+      setIsActive3(false);
     }
   },[openModal]);
 
