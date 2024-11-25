@@ -37,7 +37,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
 
   const [scoreColor, setScoreColor] = useState<string>('');
 
-  // generates the path of the arc, based on the start and end angles
+  // helper function of describe arc, there to plot polar points on cartesian graph
   const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
     const angleInRadians = (angleInDegrees - 180) * Math.PI / 180.0;
     return {
@@ -46,6 +46,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
     };
   };
 
+  // generates the path of the arc, based on the start and end angles
   const describeArc = (x: number, y: number, radius: number, startAngle: number, endAngle: number) => {
     const start = polarToCartesian(x, y, radius, endAngle);
     const end = polarToCartesian(x, y, radius, startAngle);
@@ -131,37 +132,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ id, value, width, height = wi
     updateArcs(value);
   }, [value, isActive]);
 
-  useEffect(() => {
-    if (isActive) {
-      const elements = document.querySelectorAll(`path[id^="arc-${id}"]`);
-      elements.forEach((element) => {
-        element.animate(
-          [
-            { stroke: inactiveRed },
-            { stroke: red },
-          ],
-          {
-            duration: 1500,
-            fill: "forwards",
-          }
-        );
-      });
-    } else {
-      const elements = document.querySelectorAll(`path[id^="arc-${id}"]`);
-      elements.forEach((element) => {
-        element.animate(
-          [
-            { stroke: red },
-            { stroke: inactiveRed },
-          ],
-          {
-            duration: 1500,
-            fill: "forwards",
-          }
-        );
-      });
-    }
-  }, [isActive]);
 
   // the id makes sure that a unique SVG element is rendered, otherwise it will return a blank
   return (

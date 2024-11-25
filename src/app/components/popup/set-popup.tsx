@@ -140,9 +140,6 @@ export default function SetPopup({ openModal, closeCallback, openRes, setRecomme
     setRecommendedTSPContribution(calculateSavingsForRetirement(userYearsToRetirement, userRetirementIncome));
     setRetirementIncome(userRetirementIncome);
     setRetirementYears(userYearsToRetirement);
-    console.log('setRecommendedTSPContribution', recommendedTSPContribution);
-    console.log('setRetirementIncome', retirementIncome);
-    console.log('setRetirementYears', retirementYears);
     openRes();
   };
 
